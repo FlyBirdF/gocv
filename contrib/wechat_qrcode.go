@@ -6,8 +6,9 @@ package contrib
 */
 import "C"
 import (
-	"gocv.io/x/gocv"
 	"unsafe"
+
+	"github.com/FlyBirdF/gocv"
 )
 
 type WeChatQRCode struct {

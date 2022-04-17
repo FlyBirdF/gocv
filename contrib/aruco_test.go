@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"gocv.io/x/gocv"
+	"github.com/FlyBirdF/gocv"
 )
 
 const (

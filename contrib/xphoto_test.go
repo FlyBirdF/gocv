@@ -3,8 +3,9 @@ package contrib
 //:testing
 
 import (
-	"gocv.io/x/gocv"
 	"testing"
+
+	"github.com/FlyBirdF/gocv"
 )
 
 func TestBm3dDenoisingStepWithParams(t *testing.T) {

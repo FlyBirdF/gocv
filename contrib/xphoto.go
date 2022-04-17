@@ -6,8 +6,9 @@ package contrib
 */
 import "C"
 import (
-	"gocv.io/x/gocv"
 	"unsafe"
+
+	"github.com/FlyBirdF/gocv"
 )
 
 // GrayworldWB is a wrapper around the cv::xphoto::GrayworldWB.

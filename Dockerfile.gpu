@@ -4,9 +4,9 @@ FROM gocv/opencv:4.5.5-gpu-cuda-11 AS gocv-gpu
 
 ENV GOPATH /go
 
-COPY . /go/src/gocv.io/x/gocv/
+COPY . /go/src/github.com/FlyBirdF/gocv/
 
-WORKDIR /go/src/gocv.io/x/gocv
+WORKDIR /go/src/github.com/FlyBirdF/gocv
 RUN go build -tags cuda -o /build/gocv_cuda_version ./cmd/cuda/
 
 CMD ["/build/gocv_cuda_version"]

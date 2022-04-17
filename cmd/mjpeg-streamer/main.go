@@ -23,8 +23,8 @@ import (
 
 	_ "net/http/pprof"
 
+	"github.com/FlyBirdF/gocv"
 	"github.com/hybridgroup/mjpeg"
-	"gocv.io/x/gocv"
 )
 
 var (

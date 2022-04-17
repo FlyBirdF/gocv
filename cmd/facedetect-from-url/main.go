@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"os"
 
-	"gocv.io/x/gocv"
+	"github.com/FlyBirdF/gocv"
 )
 
 func main() {

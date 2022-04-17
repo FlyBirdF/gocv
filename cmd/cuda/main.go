@@ -6,6 +6,7 @@
 //
 // 		go run --tags cuda ./cmd/cuda/main.go
 //
+//go:build cuda
 // +build cuda
 
 package main
@@ -13,8 +14,8 @@ package main
 import (
 	"fmt"
 
-	"gocv.io/x/gocv"
-	"gocv.io/x/gocv/cuda"
+	"github.com/FlyBirdF/gocv"
+	"github.com/FlyBirdF/gocv/cuda"
 )
 
 func main() {

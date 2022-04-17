@@ -1,10 +1,11 @@
 package contrib
 
 import (
-	"gocv.io/x/gocv"
 	"os"
 	"reflect"
 	"testing"
+
+	"github.com/FlyBirdF/gocv"
 )
 
 func TestNewWeChatQRCode(t *testing.T) {
