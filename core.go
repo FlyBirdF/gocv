@@ -872,6 +872,46 @@ func (m *Mat) DivideFloat(val float32) {
 	C.Mat_DivideFloat(m.p, C.float(val))
 }
 
+func (m *Mat) AddScalar(value Scalar) {
+	cValue := C.struct_Scalar{
+		val1: C.double(value.Val1),
+		val2: C.double(value.Val2),
+		val3: C.double(value.Val3),
+		val4: C.double(value.Val4),
+	}
+	C.Mat_AddScalar(m.p, cValue)
+}
+
+func (m *Mat) SubtractScalar(value Scalar) {
+	cValue := C.struct_Scalar{
+		val1: C.double(value.Val1),
+		val2: C.double(value.Val2),
+		val3: C.double(value.Val3),
+		val4: C.double(value.Val4),
+	}
+	C.Mat_SubtractScalar(m.p, cValue)
+}
+
+func (m *Mat) MultiplyScalar(value Scalar) {
+	cValue := C.struct_Scalar{
+		val1: C.double(value.Val1),
+		val2: C.double(value.Val2),
+		val3: C.double(value.Val3),
+		val4: C.double(value.Val4),
+	}
+	C.Mat_MultiplyScalar(m.p, cValue)
+}
+
+func (m *Mat) DivideScalar(value Scalar) {
+	cValue := C.struct_Scalar{
+		val1: C.double(value.Val1),
+		val2: C.double(value.Val2),
+		val3: C.double(value.Val3),
+		val4: C.double(value.Val4),
+	}
+	C.Mat_DivideScalar(m.p, cValue)
+}
+
 // MultiplyMatrix multiplies matrix (m*x)
 func (m *Mat) MultiplyMatrix(x Mat) Mat {
 	return newMat(C.Mat_MultiplyMatrix(m.p, x.p))
@@ -2582,6 +2622,7 @@ func (buffer *NativeByteBuffer) Len() int {
 func (buffer *NativeByteBuffer) Close() {
 	C.StdByteVectorFree(buffer.nativePointer())
 }
+
 // Points2fVector is a wrapper around a std::vector< std::vector< cv::Point2f > >*
 type Points2fVector struct {
 	p C.Points2fVector
@@ -2596,7 +2637,7 @@ func NewPoints2fVector() Points2fVector {
 // initialized to a slice of slices of Point2f.
 func NewPoints2fVectorFromPoints(pts [][]Point2f) Points2fVector {
 	pvf := NewPoints2fVector()
-	for j := 0;j<len(pts);j++{
+	for j := 0; j < len(pts); j++ {
 		pv := NewPoint2fVectorFromPoints(pts[j])
 		pvf.Append(pv)
 		pv.Close()
@@ -2611,7 +2652,7 @@ func (pvs Points2fVector) P() C.Points2fVector {
 // ToPoints returns a slice of slices of Point2f for the data in this Points2fVector.
 func (pvs Points2fVector) ToPoints() [][]Point2f {
 	ppoints := make([][]Point2f, pvs.Size())
-	for j := 0;j < pvs.Size();j++{
+	for j := 0; j < pvs.Size(); j++ {
 		pts := pvs.At(j)
 		points := pts.ToPoints()
 		ppoints[j] = points
@@ -2634,7 +2675,7 @@ func (pvs Points2fVector) At(idx int) Point2fVector {
 	if idx > pvs.Size() {
 		return Point2fVector{}
 	}
-	return Point2fVector{p : C.Points2fVector_At(pvs.p, C.int(idx))}
+	return Point2fVector{p: C.Points2fVector_At(pvs.p, C.int(idx))}
 }
 
 // Append appends a Point2fVector at end of the Points2fVector.
@@ -2728,7 +2769,7 @@ func (pfv Point3fVector) Append(point Point3f) {
 		x: C.float(point.X),
 		y: C.float(point.Y),
 		z: C.float(point.Z),
-	});
+	})
 }
 
 // ToPoints returns a slice of Point3f for the data in this Point3fVector.
@@ -2759,7 +2800,7 @@ func NewPoints3fVector() Points3fVector {
 // initialized to a slice of slices of Point3f.
 func NewPoints3fVectorFromPoints(pts [][]Point3f) Points3fVector {
 	pvf := NewPoints3fVector()
-	for j := 0;j<len(pts);j++{
+	for j := 0; j < len(pts); j++ {
 		pv := NewPoint3fVectorFromPoints(pts[j])
 		pvf.Append(pv)
 		pv.Close()
@@ -2770,7 +2811,7 @@ func NewPoints3fVectorFromPoints(pts [][]Point3f) Points3fVector {
 // ToPoints returns a slice of slices of Point3f for the data in this Points3fVector.
 func (pvs Points3fVector) ToPoints() [][]Point3f {
 	ppoints := make([][]Point3f, pvs.Size())
-	for j := 0;j < pvs.Size();j++{
+	for j := 0; j < pvs.Size(); j++ {
 		pts := pvs.At(j)
 		points := pts.ToPoints()
 		ppoints[j] = points
@@ -2793,7 +2834,7 @@ func (pvs Points3fVector) At(idx int) Point3fVector {
 	if idx > pvs.Size() {
 		return Point3fVector{}
 	}
-	return Point3fVector{p : C.Points3fVector_At(pvs.p, C.int(idx))}
+	return Point3fVector{p: C.Points3fVector_At(pvs.p, C.int(idx))}
 }
 
 // Append appends a Point3fVector at end of the Points3fVector.
