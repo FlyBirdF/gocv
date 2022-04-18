@@ -406,10 +406,10 @@ func TestMinAreaRect(t *testing.T) {
 
 	m := MinAreaRect(pv)
 
-	if m.Center.X != 2 {
+	if math.Ceil(float64(m.Center.X)) != 2.0 {
 		t.Errorf("TestMinAreaRect(): unexpected center.X = %v, want = %v", m.Center.X, 2)
 	}
-	if m.Center.Y != 2 {
+	if math.Ceil(float64(m.Center.Y)) != 2.0 {
 		t.Errorf("TestMinAreaRect(): unexpected center.Y = %v, want = %v", m.Center.Y, 2)
 	}
 	if m.Angle != 45.0 {
@@ -434,10 +434,10 @@ func TestFitEllipse(t *testing.T) {
 	defer pv.Close()
 
 	rect := FitEllipse(pv)
-	if rect.Center.X != 2 {
-		t.Errorf("TestFitEllipse(): unexpected center.X = %v, want = %v", rect.Center.X, 2)
+	if math.Ceil(float64(rect.Center.X)) != 2.0 {
+		t.Errorf("TestFitEllipse(): unexpected center.X = %v, want = %v", rect.Center.X, 2.0)
 	}
-	if rect.Center.Y != 2 {
+	if math.Ceil(float64(rect.Center.Y)) != 2.0 {
 		t.Errorf("TestFitEllipse(): unexpected center.Y = %v, want = %v", rect.Center.Y, 2)
 	}
 	if rect.Angle != 78.60807800292969 {

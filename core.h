@@ -121,12 +121,18 @@ typedef struct Size {
     int height;
 } Size;
 
+// Wrapper for an individual cv::cvSize2f
+typedef struct Size2f {
+    float width;
+    float height;
+} Size2f;
+
 // Wrapper for an individual cv::RotatedRect
 typedef struct RotatedRect {
     Points pts;
     Rect boundingRect;
-    Point center;
-    Size size;
+    Point2f center;
+    Size2f size;
     double angle;
 } RotatedRect;
 

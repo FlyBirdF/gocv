@@ -81,8 +81,8 @@ struct RotatedRect FitEllipse(PointVector pts)
     cv::RotatedRect bRect = cv::fitEllipse(*pts);
 
     Rect r = {bRect.boundingRect().x, bRect.boundingRect().y, bRect.boundingRect().width, bRect.boundingRect().height};
-    Point centrpt = {int(lroundf(bRect.center.x)), int(lroundf(bRect.center.y))};
-    Size szsz = {int(lroundf(bRect.size.width)), int(lroundf(bRect.size.height))};
+    Point2f centrpt = {bRect.center.x, bRect.center.y};
+    Size2f szsz = {bRect.size.width, bRect.size.height};
 
     cv::Point2f* pts4 = new cv::Point2f[4];
     bRect.points(pts4);
@@ -206,8 +206,8 @@ struct RotatedRect MinAreaRect(PointVector pts){
 
     cv::Rect bRect = cvrect.boundingRect();
     Rect r = {bRect.x, bRect.y, bRect.width, bRect.height};
-    Point centrpt = {int(lroundf(cvrect.center.x)), int(lroundf(cvrect.center.y))};
-    Size szsz = {int(lroundf(cvrect.size.width)), int(lroundf(cvrect.size.height))};
+    Point2f centrpt = {cvrect.center.x, cvrect.center.y};
+    Size2f szsz = {cvrect.size.width, cvrect.size.height};
 
     RotatedRect retrect = {(Contour){rpts, 4}, r, centrpt, szsz, cvrect.angle};
     return retrect;
